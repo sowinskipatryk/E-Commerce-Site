@@ -38,11 +38,6 @@
     padding: 5px 8px 5px 8px;
 }
 
-.col-lg-4
-{
-    margin-top: 10px;
-}
-
 .btn
 {
     border-radius: 0;
@@ -75,4 +70,26 @@
     cursor: pointer;
     display: block;
     padding-top: 2px;
+}
+
+.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12
+{
+	margin-top: 10px;
+}
+
+.hidden>div
+{
+	display: none !important;
+}
+
+.visible>div
+{
+	display: block;
+}
+
+.form-field
+{
+    width: 250px;
+    padding: 5px;
+    display: inline-block;
 }
