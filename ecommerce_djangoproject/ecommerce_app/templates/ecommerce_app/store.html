@@ -2,34 +2,17 @@
 {% load static %}
 {% block content %}
 <div class="row">
+    {% for product in products %}
     <div class="col-lg-4 p-2">
-        <img class="thumbnail" src="{% static 'images/placeholder.png' %}" alt="product" style="width: 424px;" />
+        <img class="thumbnail" src="{{ product.imageURL }}" alt="product" style="width: 424px;" />
         <div class="box-element product">
-            <h6 class="pt-2"><strong>Product</strong></h6>
+            <h6 class="pt-2"><strong>{{product.name}}</strong></h6>
             <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
-            <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block; float: right;"><strong>$33</strong></h4>
+            <button class="btn btn-outline-success add-btn">Dodaj do Koszyka</button>
+            <a class="btn btn-outline-secondary" href="#">Zobacz</a>
+            <h4 style="display: inline-block; float: right;"><strong>${{product.price|floatformat:2}}</strong></h4>
         </div>
     </div>
-    <div class="col-lg-4 p-2">
-        <img class="thumbnail" src="{% static 'images/placeholder.png' %}" alt="product" style="width: 424px;" />
-        <div class="box-element product">
-            <h6 class="pt-2"><strong>Product</strong></h6>
-            <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
-            <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block; float: right;"><strong>$19</strong></h4>
-        </div>
-    </div>
-    <div class="col-lg-4 p-2">
-        <img class="thumbnail" src="{% static 'images/placeholder.png' %}" alt="product" style="width: 424px;" />
-        <div class="box-element product">
-            <h6 class="pt-2"><strong>Product</strong></h6>
-            <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
-            <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block; float: right;"><strong>$27</strong></h4>
-        </div>
+    {% endfor %}
 </div>
 {% endblock content %}
