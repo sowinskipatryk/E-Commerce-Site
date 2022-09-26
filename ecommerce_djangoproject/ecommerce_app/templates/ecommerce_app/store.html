@@ -4,13 +4,13 @@
 <div class="row">
     {% for product in products %}
     <div class="col-lg-4 p-2">
-        <img class="thumbnail" src="{{ product.imageURL }}" alt="product" style="width: 424px;" />
         <div class="box-element product">
+            <img class="thumbnail" src="{{ product.imageURL }}" alt="product" style="width: 100%; box-shadow: none;" />
             <h6 class="pt-2"><strong>{{product.name}}</strong></h6>
             <hr>
-            <button class="btn btn-outline-success add-btn">Dodaj do Koszyka</button>
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-success add-btn update-cart">Dodaj do Koszyka</button>
             <a class="btn btn-outline-secondary" href="#">Zobacz</a>
-            <h4 style="display: inline-block; float: right;"><strong>${{product.price|floatformat:2}}</strong></h4>
+            <div class="pt-2 pe-2" style="text-align: right;"><h4><strong>{{product.price|floatformat:2}} zł</strong></h4></div>
         </div>
     </div>
     {% endfor %}
