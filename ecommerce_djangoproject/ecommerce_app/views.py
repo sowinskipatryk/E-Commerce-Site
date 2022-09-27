@@ -9,10 +9,8 @@ def store(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
         cart_items = order.get_cart_items
     else:
-        items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0, 'shipping': False}
         cart_items = order['get_cart_items']
     products = Product.objects.all()
@@ -27,9 +25,36 @@ def cart(request):
         items = order.orderitem_set.all()
         cart_items = order.get_cart_items
     else:
+        try:
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}
+
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0, 'shipping': False}
         cart_items = order['get_cart_items']
+
+        for i in cart:
+            cart_items += cart[i]['quantity']
+
+            product = Product.objects.get(id=i)
+            total = (product.price * cart[i]['quantity'])
+
+            order['get_cart_total'] += total
+            order['get_cart_items'] += cart[i]['quantity']
+
+            item = {
+                'product': {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'imageURL': product.imageURL,
+                },
+                'quantity': cart[i]['quantity'],
+                'get_total': total,
+            }
+            items.append(item)
+
     context = {'items': items, 'order': order, 'cartItems': cart_items}
     return render(request, 'ecommerce_app/cart.html', context)
 

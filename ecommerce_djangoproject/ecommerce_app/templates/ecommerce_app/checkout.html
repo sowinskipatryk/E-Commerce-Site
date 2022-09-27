@@ -8,10 +8,10 @@
                 <div id="user-info">
                     <div class="form-group row ps-1">
                         <div class="col-xs-3 mb-2 mt-2">
-                            <input required class="form-control" type="text" name="name" placeholder="Imię" style="width:245px;">
+                            <input class="form-control" type="text" name="name" placeholder="Imię" style="width:245px;">
                         </div>
                         <div class="col-xs-3">
-                            <input required class="form-control" type="email" name="email" placeholder="Email" style="width:245px;">
+                            <input class="form-control" type="email" name="email" placeholder="Email" style="width:245px;">
                         </div>
                     </div>
                 </div>
@@ -133,10 +133,11 @@
             userFormData.name = form.name.value
             userFormData.email = form.email.value
         }
-
-        console.log(user);
-        console.log(userFormData);
-        console.log(shippingInfo);
+        else
+        {
+            userFormData.name = user
+            userFormData.email = '{{user.email}}'
+        }
 
     var url = '/process_order/'
     fetch(url,
@@ -147,7 +148,7 @@
             'Content-Type':'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body:JSON.stringify({'form': userFormData, 'shipping':shippingInfo}),
+        body:JSON.stringify({'form': userFormData, 'shipping': shippingInfo}),
     })
     .then((response) => response.json())
     .then((data) => {
