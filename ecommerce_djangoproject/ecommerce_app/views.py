@@ -1,9 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from .utils import cart_data, guest_order
 import json
 import datetime
+
+
+def register_page(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    else:
+        form = UserCreationForm()
+
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('login')
+
+    context = {'form': form}
+    return render(request, 'ecommerce_app/register.html', context)
+
+
+def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+
+    return render(request, 'ecommerce_app/login.html')
+
+
+def logout_page(request):
+    logout(request)
+    return redirect('/')
 
 
 def store(request):

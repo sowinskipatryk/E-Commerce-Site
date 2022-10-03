@@ -66,7 +66,9 @@
           </ul>
         </div>
             <div class="navbar form-inline my-2 my-lg-0">
-            <a href="#" id="login-button" class="btn btn-warning">Logowanie</a>
+            <span id="logged-as" class="me-3"></span>
+            <a href="login/" id="login-button" class="btn btn-warning">Zaloguj</a>
+            <a href="logout/" id="logout-button" class="btn btn-warning">Wyloguj</a>
             <a href="{% url 'cart' %}">
             <img id="cart-icon" src="{% static 'images/cart.png' %}">
             </a>
@@ -84,14 +86,16 @@
     <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
     <script>
         var user = '{{request.user}}'
+        var login_element = document.getElementById('login-button')
+        var logout_element = document.getElementById('logout-button')
+        var logged_as_element = document.getElementById('logged-as')
 
         if (user != 'AnonymousUser'){
-            element = document.getElementById('login-button');
-            element.classList.remove('btn');
-            element.classList.remove('btn-warning');
-            element.classList.add('text-white');
-            element.style.textDecoration = 'none';
-            element.innerHTML = 'Zalogowano jako ' + user + '.'
+            logged_as_element.innerHTML = 'Zalogowano jako ' + user + '.';
+            logged_as_element.style.color = 'white';
+            login_element.style.display = 'none';
+        } else {
+            logout_element.style.display = 'none';
         }
     </script>
 </body>

@@ -94,3 +94,8 @@
 {
     display: none !important;
 }
+
+#logged-as{
+    color: white;
+    padding-right: 2px !important;
+}
