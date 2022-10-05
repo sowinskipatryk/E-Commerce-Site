@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% extends 'ecommerce_app/main.html' %}
+{% load static %}
+{% block content %}
+<div class="box-element m-4 p-2">
     <form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit" class="btn btn-success">Login</button>
-</form>
-</body>
-</html>
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="d-grid gap-2 col-6 mx-auto">
+        <input class="form-control mt-1" type="text" name="username" placeholder="Username">
+        <input class="form-control mt-1" type="password" name="password" placeholder="Password">
+        <button type="submit" class="btn btn-success mb-1">Login</button>
+        </div>
+    </form>
+</div>
+<script>
+    let loginBtn = document.getElementById('login-button');
+    let cartIcon = document.getElementById('cart-icon');
+    loginBtn.style.display = 'none';
+    cartIcon.style.display = 'none';
+</script>
+{% endblock content %}
