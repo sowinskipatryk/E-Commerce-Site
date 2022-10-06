@@ -1,6 +1,8 @@
 # Django E-commerce Site
 
-This project is based on YouTube tutorial by Dennis Ivy.
-The goal is to make an e-commerce website using Django.
+This is an e-commerce shop project based on a YouTube tutorial from Dennis Ivy.
+Among other things, the app supports logging in, adding items to the shopping cart, sending orders as an authorized or unauthorized user. 
+In the next steps, it is planned to expand the functionality - adding a search engine, a user registration page, an item zoom overlay.
 
-![image](https://user-images.githubusercontent.com/91700001/189763987-2d0d10dd-3d6e-4043-94f5-b66ab5ce4939.png)
+![siteoverwiew](https://user-images.githubusercontent.com/91700001/194421972-5f9ff427-c8b5-4024-aca7-663017d336bf.PNG)
+
