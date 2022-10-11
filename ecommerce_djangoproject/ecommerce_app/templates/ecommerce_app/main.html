@@ -50,7 +50,7 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark barwidth" style="min-height:72px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark barwidth sticky-top" style="min-height:72px;">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'store' %}">Szopping
         <img id="racoon-icon" src="{% static 'images/racoon.png' %}">
@@ -76,7 +76,7 @@
         </div>
             <div class="navbar form-inline my-2 my-lg-0">
             <span id="logged-as" class="me-3"></span>
-            <a href="login/" id="login-button" class="btn btn-warning">Zaloguj</a>
+            <a href="{% url 'login_page' %}" id="login-button" class="btn btn-warning">Zaloguj</a>
             <a href="logout/" id="logout-button" class="btn btn-warning">Wyloguj</a>
             <a href="{% url 'cart' %}">
             <img id="cart-icon" src="{% static 'images/cart.png' %}">
